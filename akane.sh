@@ -14,7 +14,8 @@ while true; do
         CPU_USAGE=$(vmstat 1 2 | tail -1 | awk '{print 100 - $15}')
 
         if [ "$CPU_USAGE" -gt "$CPU_DANGER" ]; then
-                echo -e "\nALERT: CPU IS OVER ${CPU_DANGER}%!"
+                TIMESTAMP=$(date +"%H:%M:%S")
+                echo -e "\n[${TIMESTAMP}] ALERT: CPU IS OVER ${CPU_DANGER}%!"
         fi
 
         echo -ne "\rCPU: ${CPU_USAGE}%"
